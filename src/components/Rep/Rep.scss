@@ -1,20 +1,28 @@
 @import 'src/colors';
 
 $size: 64px;
+$borderSize: 1px;
 
 .rep {
   width: $size;
   height: $size;
   text-align: center;
-  line-height: $size;
-  border: 1px solid #aaa;
+  line-height: $size - $borderSize * 2;
   border-radius: 6px;
 
+  background-color: $card;
+  color: $onCard;
+  border: $borderSize solid rgba($onCard, 0.1);
+
   &--done {
-    background-color: $doneBg;
+    background-color: $done;
+    color: $onDone;
+    border-color: rgba($onDone, 0.1);
   }
 
   &--current {
-    background-color: $currentBg;
+    background-color: $current;
+    color: $onCurrent;
+    border-color: rgba($onCurrent, 0.1);
   }
 }
