@@ -1,0 +1,9 @@
+@import 'src/colors';
+
+.reps {
+  $size: 64px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}

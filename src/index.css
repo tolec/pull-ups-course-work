@@ -1,13 +1,62 @@
+/* @import "bootstrap"; */
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #222; /* Цвет фона страницы */
+  color: #fff; /* Цвет текста */
+  font-family: Arial, sans-serif; /* Шрифт текста */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  color: #3498db; /* Цвет ссылок */
+}
+
+a:hover {
+  color: #2980b9; /* Цвет ссылок при наведении */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #fff; /* Цвет заголовков */
+}
+
+p {
+  line-height: 1.6; /* Межстрочный интервал для параграфов */
+}
+
+/* Общий стиль для кнопок */
+button, .button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Стиль для обычных кнопок */
+button, .button {
+  background-color: #3498db; /* Цвет кнопок */
+  color: #fff; /* Цвет текста на кнопках */
+  border: none;
+}
+
+button:hover, .button:hover {
+  background-color: #2980b9; /* Цвет кнопок при наведении */
+}
+
+button:active, .button:active {
+  background-color: #1f618d; /* Цвет кнопок при нажатии */
+}
+
+/* Стиль для ссылочных кнопок */
+.button-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 16px;
+  color: #3498db; /* Цвет текста на ссылочных кнопках */
+}
+
+.button-link:hover {
+  color: #2980b9; /* Цвет текста на ссылочных кнопках при наведении */
 }

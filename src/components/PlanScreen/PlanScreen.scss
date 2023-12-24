@@ -1,0 +1,31 @@
+$accent: #b8815b;
+
+.plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__item {
+    display: block;
+    padding: 8px;
+    cursor: pointer;
+    border: 1px solid $accent;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: rgba($accent, 0.2);
+    }
+
+    &:active {
+      background-color: rgba($accent, 0.3);
+    }
+  }
+
+  &__done {
+    background-color: rgba(green, 0.2);
+  }
+
+  &__current {
+    background-color: rgba(orange, 0.2);
+  }
+}

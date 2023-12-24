@@ -1,0 +1,20 @@
+@import 'src/colors';
+
+$size: 64px;
+
+.rep {
+  width: $size;
+  height: $size;
+  text-align: center;
+  line-height: $size;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+
+  &--done {
+    background-color: $doneBg;
+  }
+
+  &--current {
+    background-color: $currentBg;
+  }
+}
