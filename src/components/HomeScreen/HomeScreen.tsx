@@ -1,33 +1,28 @@
 import { observer } from 'mobx-react-lite'
 import { globalState } from '../../data/globalState'
+import { Button } from '../Button/Button'
 
 export const HomeScreen = observer(() => {
   return (
     <div>
       <h1>Подтягивания</h1>
       <div>
-        <button
-          className="button"
-          onClick={() => globalState.currentScreen.goto('plan')}
-        >
+        <Button onClick={() => globalState.currentScreen.goto('plan')}>
           План тренировок
-        </button>
+        </Button>
       </div>
       <div>
-        <button
-          className="button"
-          onClick={() => globalState.currentScreen.goto('training')}
-        >
+        <Button onClick={() => globalState.currentScreen.goto('training')}>
           Начать тренировку
-        </button>
+        </Button>
       </div>
       <div>
-        <button
-          className="button"
+        <Button
+          color={'secondary'}
           onClick={() => globalState.currentScreen.goto('training')}
         >
           Продолжить тренировку
-        </button>
+        </Button>
       </div>
     </div>
   )

@@ -1,0 +1,54 @@
+@import 'src/colors';
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+
+  // Default color
+  & {
+    background-color: $primary;
+    color: $onPrimary;
+    border: none;
+  }
+
+  &:hover {
+    background-color: darken($primary, 7%);
+  }
+
+  &:active {
+    background-color: darken($primary, 8%);
+    scale: 0.97;
+  }
+
+  &--secondary {
+    & {
+      background-color: $secondary;
+      color: $onSecondary;
+    }
+
+    &:hover {
+      background-color: darken($secondary, 7%);
+    }
+
+    &:active {
+      background-color: darken($secondary, 8%);
+    }
+  }
+}
+
+//.button-link {
+//  background: none;
+//  border: none;
+//  padding: 0;
+//  font-size: 16px;
+//  color: $primary;
+//}
+//
+//.button-link:hover {
+//  color: darken($primary, 7%);
+//}
