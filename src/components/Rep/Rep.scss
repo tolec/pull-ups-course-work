@@ -6,9 +6,10 @@ $borderSize: 1px;
 .rep {
   width: $size;
   height: $size;
+  font-size: 28px;
   text-align: center;
   line-height: $size - $borderSize * 2;
-  border-radius: 6px;
+  border-radius: 25%;
 
   background-color: $card;
   color: $onCard;

@@ -1,0 +1,64 @@
+@import 'src/colors';
+
+@mixin highlight-row($color) {
+  &:hover {
+    background-color: $color;
+  }
+
+  &:active {
+    background-color: darken($color, 5%);
+  }
+}
+
+.plan-row {
+  $this: &;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+
+  &--default {
+    @include highlight-row($card);
+  }
+
+  &--done {
+    @include highlight-row(rgba($done, 0.2));
+  }
+
+  &--current {
+    @include highlight-row(rgba($current, 0.2));
+  }
+
+  &__reps {
+  }
+
+  &__week-info,
+  &__total-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__week-info {
+    #{$this}--done & {
+      color: $done;
+    }
+    #{$this}--current & {
+      color: $current;
+    }
+  }
+
+  &__week-number,
+  &__total-number {
+    font-size: 48px;
+  }
+
+  &__week_word,
+  &__total-word {
+    font-size: 18px;
+  }
+}
