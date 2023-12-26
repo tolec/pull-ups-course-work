@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { globalState } from '../../data/global-state'
+import { globalState } from '../../data/globalState'
 import { HomeScreen } from '../HomeScreen/HomeScreen'
 import { PlanScreen } from '../PlanScreen/PlanScreen'
 import { ErrorScreen } from '../ErrorScreen/ErrorScreen'

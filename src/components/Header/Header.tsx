@@ -1,4 +1,4 @@
-import { globalState } from '../../data/global-state'
+import { globalState } from '../../data/globalState'
 
 export const Header = () => {
   return (

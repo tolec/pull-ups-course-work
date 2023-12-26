@@ -1,7 +1,7 @@
-import { CurrentScreenStore, CurrentWeekStore, Plan } from './plan'
+import { CurrentScreenStore, CurrentWeekStore, PlanStore } from './PlanStore'
 
 const currentScreen = new CurrentScreenStore()
-const plan = new Plan()
+const plan = new PlanStore()
 const currentWeek = new CurrentWeekStore()
 
 export const globalState = {

@@ -27,4 +27,14 @@
     justify-content: center;
     font-size: 64px;
   }
+
+  &__another-week {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      text-align: center;
+    }
+  }
 }

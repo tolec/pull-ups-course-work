@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx'
-import { planData } from './plan-data'
+import { planData } from './planData'
 
 /**
  * Для курсовой.
@@ -10,9 +10,10 @@ import { planData } from './plan-data'
 enum Keys {
   currentScreen = 'currentScreen',
   currentWeek = 'currentWeek',
+  selectedWeek = 'selectedWeek',
 }
 
-export class Plan {
+export class PlanStore {
   constructor() {
     // makeAutoObservable(this)
   }
@@ -27,24 +28,39 @@ export class Plan {
 }
 
 export class CurrentWeekStore {
-  weekIndex: number
+  private _currentWeekIndex: number
+  private _selectedWeekIndex: number
 
   constructor() {
     makeAutoObservable(this)
-    this.weekIndex = this.readCurrentWeekIndex()
+    this._currentWeekIndex = this.readCurrentWeekIndex()
+    this._selectedWeekIndex = this.readSelectedWeekIndex()
   }
 
   private readCurrentWeekIndex(): number {
     return Number(localStorage.getItem(Keys.currentWeek) || 0)
   }
 
+  private readSelectedWeekIndex(): number {
+    return Number(localStorage.getItem(Keys.selectedWeek) || 0)
+  }
+
   get currentWeekIndex() {
-    return this.weekIndex
+    return this._currentWeekIndex
+  }
+
+  get selectedWeekIndex() {
+    return this._selectedWeekIndex
   }
 
   setCurrentWeekIndex(weekIndex: number) {
-    this.weekIndex = weekIndex
+    this._currentWeekIndex = weekIndex
     localStorage.setItem(Keys.currentWeek, weekIndex.toString())
+  }
+
+  setSelectedWeekIndex(weekIndex: number) {
+    this._selectedWeekIndex = weekIndex
+    localStorage.setItem(Keys.selectedWeek, weekIndex.toString())
   }
 }
 
