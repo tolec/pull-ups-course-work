@@ -2,26 +2,44 @@ import { observer } from 'mobx-react-lite'
 import { globalState } from '../../data/globalState'
 import { Reps } from '../Reps/Reps'
 import './TrainingScreen.scss'
+import classNames from 'classnames'
+import { useCallback } from 'react'
 
 export const TrainingScreen = observer(() => {
   const { currentWeekIndex, selectedWeekIndex } = globalState.currentWeek
   const plan = globalState.plan
   const weekPlan = plan.getWeekPlan(selectedWeekIndex)
+  const { trainingStore, currentScreen } = globalState
+
+  const handleDone = useCallback(() => {
+    trainingStore.setRepDone()
+  }, [])
+
+  const handleComplete = useCallback(() => {
+    trainingStore.setCurrentRep(0)
+    currentScreen.goto('home')
+  }, [])
 
   return (
     <div className="trainingScreen">
       Тренировка
       <div>
-        <Reps reps={weekPlan} />
+        <Reps reps={weekPlan} currentRepIndex={trainingStore.currentRep} />
       </div>
-      <div className="trainingScreen__current-rep">
-        <div className="trainingScreen__current-rep-value">4</div>
+      <div
+        className={classNames('trainingScreen__current-rep', {
+          'trainingScreen__current-rep--finished': trainingStore.isFinished,
+        })}
+      >
+        {trainingStore.isFinished ? '✓' : weekPlan[trainingStore.currentRep]}
       </div>
       <div>
         {selectedWeekIndex !== currentWeekIndex ? (
           <AnotherWeek />
+        ) : trainingStore.isFinished ? (
+          <button onClick={handleComplete}>Завершить</button>
         ) : (
-          <button>Готово</button>
+          <button onClick={handleDone}>Готово</button>
         )}
       </div>
     </div>

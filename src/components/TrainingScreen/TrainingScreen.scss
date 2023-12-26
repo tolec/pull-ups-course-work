@@ -11,21 +11,19 @@
 
     width: $size;
     height: $size;
-    border: 10px solid $current;
     border-radius: 50%;
-    position: relative;
-  }
+    border: 10px solid $current;
+    color: $current;
 
-  &__current-rep-value {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 64px;
+
+    &--finished {
+      border-color: $done;
+      color: $done;
+    }
   }
 
   &__another-week {

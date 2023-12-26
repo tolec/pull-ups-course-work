@@ -15,9 +15,9 @@ export const Reps = ({ reps, currentRepIndex }: RepsProps) => {
     <div className="reps">
       {reps.map((rep, index) => {
         const mode: RepMode =
-          showCurrent && index < 2
+          showCurrent && index < currentRepIndex
             ? 'done'
-            : showCurrent && index === 2
+            : showCurrent && index === currentRepIndex
               ? 'current'
               : 'default'
 

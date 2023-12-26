@@ -6,7 +6,9 @@ import { ErrorScreen } from '../ErrorScreen/ErrorScreen'
 import { TrainingScreen } from '../TrainingScreen/TrainingScreen'
 
 export const Content = observer(() => {
-  switch (globalState.currentScreen.screen) {
+  const { currentScreen } = globalState
+
+  switch (currentScreen.currentScreen) {
     case 'home':
       return <HomeScreen />
     case 'plan':
