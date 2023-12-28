@@ -11,8 +11,8 @@ export class TrainingStore {
     this._currentRep = this.readCurrentRep()
   }
 
-  private readCurrentRep(): number {
-    return Number(getStorageValue(Keys.currentRep) || 0)
+  private readCurrentRep() {
+    return Number(getStorageValue<number>(Keys.currentRep) || 0)
   }
 
   get currentRep() {

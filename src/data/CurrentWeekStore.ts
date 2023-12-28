@@ -11,12 +11,12 @@ export class CurrentWeekStore {
     this._selectedWeekIndex = this.readSelectedWeekIndex()
   }
 
-  private readCurrentWeekIndex(): number {
-    return Number(getStorageValue(Keys.currentWeek) || 0)
+  private readCurrentWeekIndex() {
+    return Number(getStorageValue<number>(Keys.currentWeek) || 0)
   }
 
-  private readSelectedWeekIndex(): number {
-    return Number(getStorageValue(Keys.selectedWeek) || 0)
+  private readSelectedWeekIndex() {
+    return Number(getStorageValue<number>(Keys.selectedWeek) || 0)
   }
 
   get currentWeekIndex() {

@@ -11,8 +11,8 @@ export class CurrentScreenStore {
     this._currentScreen = this.readCurrentScreen()
   }
 
-  private readCurrentScreen(): ScreenType {
-    return (getStorageValue(Keys.currentScreen) as ScreenType) || 'home'
+  private readCurrentScreen() {
+    return getStorageValue<ScreenType>(Keys.currentScreen) || 'home'
   }
 
   get currentScreen() {

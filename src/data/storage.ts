@@ -1,3 +1,5 @@
+import { LocalStorageHelper } from './LocalStorageHelper'
+
 export enum Keys {
   currentScreen = 'currentScreen',
   currentWeek = 'currentWeek',
@@ -14,9 +16,9 @@ const PREFIX = 'pull-ups--'
  */
 
 export const setStorageValue = (key: Keys, value: string) => {
-  localStorage.setItem(`${PREFIX}${key}`, value)
+  LocalStorageHelper.setItem(`${PREFIX}${key}`, value)
 }
 
-export const getStorageValue = (key: Keys) => {
-  return localStorage.getItem(`${PREFIX}${key}`)
+export const getStorageValue = <T>(key: Keys) => {
+  return LocalStorageHelper.getItem<T>(`${PREFIX}${key}`)
 }
