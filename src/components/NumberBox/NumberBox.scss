@@ -1,0 +1,23 @@
+@import 'src/colors';
+
+.number-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &--done {
+    color: $done;
+  }
+
+  &--current {
+    color: $current;
+  }
+
+  &__number {
+    font-size: 48px;
+  }
+
+  &__word {
+    font-size: 18px;
+  }
+}

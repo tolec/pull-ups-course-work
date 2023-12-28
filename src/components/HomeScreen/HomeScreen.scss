@@ -1,7 +1,27 @@
+@import 'src/colors';
+
 .home-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 48px;
+
+  &__centered {
+    text-align: center;
+  }
+
+  &__current-week {
+    padding: 16px;
+    border: 1px solid $current;
+    border-radius: 16px;
+  }
+
+  &__plan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
 
   &__buttons {
     display: flex;

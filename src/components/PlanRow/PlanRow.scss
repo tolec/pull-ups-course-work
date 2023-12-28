@@ -21,6 +21,10 @@
   cursor: pointer;
   border-radius: 8px;
 
+  &__number-box {
+    width: 64px;
+  }
+
   &--default {
     @include highlight-row($card);
   }
@@ -31,34 +35,5 @@
 
   &--current {
     @include highlight-row(rgba($current, 0.2));
-  }
-
-  &__reps {
-  }
-
-  &__week-info,
-  &__total-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  &__week-info {
-    #{$this}--done & {
-      color: $done;
-    }
-    #{$this}--current & {
-      color: $current;
-    }
-  }
-
-  &__week-number,
-  &__total-number {
-    font-size: 48px;
-  }
-
-  &__week_word,
-  &__total-word {
-    font-size: 18px;
   }
 }

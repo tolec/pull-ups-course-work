@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import './PlanRow.scss'
 import { Reps } from '../Reps/Reps'
+import { NumberBox } from '../NumberBox/NumberBox'
 
 export const PlanRow = ({
   weekIndex,
@@ -13,6 +14,7 @@ export const PlanRow = ({
   mode: 'default' | 'done' | 'current'
   onClickRow: () => void
 }) => {
+  const repsSum = reps.reduce((s, x) => s + x)
   return (
     <div
       className={classNames('plan-row', {
@@ -22,18 +24,14 @@ export const PlanRow = ({
       })}
       onClick={() => onClickRow()}
     >
-      <div className="plan-row__week-info">
-        <div className="plan-row__week-number">{weekIndex + 1}</div>
-        <div className="plan-row__week_word">неделя</div>
+      <div className="plan-row__number-box">
+        <NumberBox number={weekIndex + 1} word={'неделя'} color={mode} />
       </div>
-      <div className="plan-row__reps">
+      <div>
         <Reps reps={reps} />
       </div>
-      <div className="plan-row__total-info">
-        <div className="plan-row__total-number">
-          {reps.reduce((s, x) => s + x)}
-        </div>
-        <div className="plan-row__total-word">всего</div>
+      <div className="plan-row__number-box">
+        <NumberBox number={repsSum} word={'всего'} />
       </div>
     </div>
   )
