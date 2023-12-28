@@ -9,8 +9,6 @@ import { plan } from '../../data/plan'
 export const HomeScreen = observer(() => {
   return (
     <div className="home-screen">
-      <h1>Подтягивания</h1>
-
       <div className="home-screen__current-week">
         <NumberBox
           number={appState.currentWeekIndex + 1}

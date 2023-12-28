@@ -1,0 +1,20 @@
+@import 'src/colors';
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 16px;
+
+  padding: 16px;
+  margin-bottom: 32px;
+  background-color: rgba($card, 0.5);
+  border-radius: 0 0 16px 16px;
+
+  font-size: 32px;
+
+  &__logo-text {
+    font-size: 32px;
+  }
+}

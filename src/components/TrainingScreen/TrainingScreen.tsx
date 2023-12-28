@@ -24,7 +24,7 @@ export const TrainingScreen = observer(() => {
 
   return (
     <div className="training-screen">
-      <h1>Тренировка</h1>
+      <h2>Тренировка</h2>
       <div className={isAnotherWeek ? 'training-screen__mute-section' : ''}>
         <Reps
           reps={weekPlan}

@@ -1,0 +1,33 @@
+@import 'src/colors';
+
+@mixin use-color($color) {
+  & {
+    color: $color;
+  }
+
+  &:hover {
+    color: darken($color, 8%);
+  }
+
+  &:active {
+    color: darken($color, 16%);
+  }
+}
+
+.link {
+  text-decoration: none;
+
+  @include use-color($primary);
+
+  &--done {
+    @include use-color($done);
+  }
+
+  &--current {
+    @include use-color($current);
+  }
+
+  &--secondary {
+    @include use-color($secondary);
+  }
+}

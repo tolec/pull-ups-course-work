@@ -1,0 +1,9 @@
+.logo {
+  $size: 64px;
+
+  width: $size;
+  height: $size;
+  background: url('../../../src/images/logo.png') no-repeat center;
+  background-size: cover;
+  border-radius: 50%;
+}

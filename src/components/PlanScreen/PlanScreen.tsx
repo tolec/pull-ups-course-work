@@ -8,10 +8,10 @@ export const PlanScreen = observer(() => {
   const currentWeekIndex = appState.currentWeekIndex
 
   return (
-    <div>
-      <h1>Pull ups</h1>
+    <div className="plan-screen">
+      <h2>План тренировок</h2>
 
-      <div className="plan-list">
+      <div className="plan-screen__plan-list">
         {plan.planList.map((weekPlan, index) => {
           const mode =
             index < currentWeekIndex
