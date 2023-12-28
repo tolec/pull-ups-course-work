@@ -21,7 +21,7 @@ export const Reps = ({ reps, currentRepIndex }: RepsProps) => {
               ? 'current'
               : 'default'
 
-        return <Rep rep={rep} mode={mode} />
+        return <Rep key={index} rep={rep} mode={mode} />
       })}
     </div>
   )
