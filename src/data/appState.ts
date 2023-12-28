@@ -15,6 +15,7 @@ export class AppState {
   currentWeekIndex: number = 0
   selectedWeekIndex: number = 0
   currentRep: number = 0
+  timerStartTime?: number
 
   constructor() {
     makeAutoObservable(this)
@@ -30,6 +31,7 @@ export class AppState {
         this.currentWeekIndex = parsedState.currentWeekIndex || 0
         this.selectedWeekIndex = parsedState.selectedWeekIndex || 0
         this.currentRep = parsedState.currentRep || 0
+        this.timerStartTime = parsedState.timerStartTime
       }
     } catch (error) {
       console.error('Failed to load state from localStorage', error)
@@ -43,6 +45,7 @@ export class AppState {
         currentWeekIndex: this.currentWeekIndex,
         selectedWeekIndex: this.selectedWeekIndex,
         currentRep: this.currentRep,
+        timerStartTime: this.timerStartTime,
       })
       localStorage.setItem('appState', state)
     } catch (error) {
@@ -67,6 +70,7 @@ export class AppState {
 
   resetCurrentTraining() {
     this.currentRep = 0
+    this.clearTimer()
     this.saveToLocalStorage()
   }
 
@@ -74,6 +78,22 @@ export class AppState {
     if (this.currentRep < REPS_COUNT) {
       this.currentRep = this.currentRep + 1
     }
+
+    if (this.currentRep < REPS_COUNT) {
+      this.startTimer()
+    }
+
+    this.saveToLocalStorage()
+  }
+
+  startTimer() {
+    this.timerStartTime = Date.now()
+    this.saveToLocalStorage()
+  }
+
+  clearTimer() {
+    this.timerStartTime = undefined
+    this.saveToLocalStorage()
   }
 
   get isFinished() {

@@ -2,25 +2,42 @@ import { observer } from 'mobx-react-lite'
 import { Reps } from '../Reps/Reps'
 import './TrainingScreen.scss'
 import classNames from 'classnames'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Button } from '../Button/Button'
 import { appState } from '../../data/appState'
 import { plan } from '../../data/plan'
+import { getTimeElapsed } from '../../helpers/getTimeElapsed'
 
 export const TrainingScreen = observer(() => {
-  const { currentWeekIndex, selectedWeekIndex } = appState
+  const { currentWeekIndex, selectedWeekIndex, timerStartTime, currentRep } =
+    appState
   const weekPlan = plan.getWeekPlan(selectedWeekIndex)
   const isAnotherWeek = selectedWeekIndex !== currentWeekIndex
   const finished = appState.isFinished
 
+  const calcCounter = useCallback(() => {
+    return timerStartTime ? getTimeElapsed(timerStartTime) : '00:00'
+  }, [timerStartTime])
+
   const handleDoneRep = useCallback(() => {
     appState.setCurrentRepDone()
-  }, [])
+    setCounter('00:00')
+  }, [calcCounter])
 
   const handleComplete = useCallback(() => {
     appState.resetCurrentTraining()
     appState.goto('home')
   }, [])
+
+  const [counter, setCounter] = useState(() => calcCounter())
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCounter(calcCounter())
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [calcCounter, setCounter])
 
   return (
     <div className="training-screen">
@@ -28,7 +45,7 @@ export const TrainingScreen = observer(() => {
       <div className={isAnotherWeek ? 'training-screen__mute-section' : ''}>
         <Reps
           reps={weekPlan}
-          currentRepIndex={isAnotherWeek ? 0 : appState.currentRep}
+          currentRepIndex={isAnotherWeek ? 0 : currentRep}
         />
       </div>
       <div
@@ -37,7 +54,18 @@ export const TrainingScreen = observer(() => {
           'training-screen__mute-section': isAnotherWeek,
         })}
       >
-        {finished ? '✓' : weekPlan[isAnotherWeek ? 0 : appState.currentRep]}
+        {finished ? '✓' : weekPlan[isAnotherWeek ? 0 : currentRep]}
+      </div>
+      <div
+        className={classNames('training-screen__counter', {
+          'training-screen__mute-section': isAnotherWeek,
+        })}
+      >
+        {finished
+          ? 'Тренировка окончена'
+          : currentRep === 0 || isAnotherWeek
+            ? 'Выполните первый подход'
+            : counter}
       </div>
       <div>
         {isAnotherWeek ? (
