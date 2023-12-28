@@ -1,12 +1,11 @@
 import { observer } from 'mobx-react-lite'
-import { globalState } from '../../data/globalState'
 import './PlanScreen.scss'
 import { PlanRow } from '../PlanRow/PlanRow'
+import { appState } from '../../data/appState'
+import { plan } from '../../data/plan'
 
 export const PlanScreen = observer(() => {
-  const plan = globalState.plan
-  const currentWeek = globalState.currentWeek
-  const currentWeekIndex = currentWeek.currentWeekIndex
+  const currentWeekIndex = appState.currentWeekIndex
 
   return (
     <div>
@@ -27,8 +26,8 @@ export const PlanScreen = observer(() => {
               reps={weekPlan}
               mode={mode}
               onClickRow={() => {
-                currentWeek.setSelectedWeekIndex(index)
-                globalState.currentScreen.goto('training')
+                appState.setSelectedWeekIndex(index)
+                appState.goto('training')
               }}
             />
           )

@@ -1,14 +1,13 @@
 import { observer } from 'mobx-react-lite'
-import { globalState } from '../../data/globalState'
 import { HomeScreen } from '../HomeScreen/HomeScreen'
 import { PlanScreen } from '../PlanScreen/PlanScreen'
-import { ErrorScreen } from '../ErrorScreen/ErrorScreen'
 import { TrainingScreen } from '../TrainingScreen/TrainingScreen'
+import { appState } from '../../data/appState'
 
 export const Content = observer(() => {
-  const { currentScreen } = globalState
+  const { currentScreen } = appState
 
-  switch (currentScreen.currentScreen) {
+  switch (currentScreen) {
     case 'home':
       return <HomeScreen />
     case 'plan':
@@ -16,6 +15,6 @@ export const Content = observer(() => {
     case 'training':
       return <TrainingScreen />
     default:
-      return <ErrorScreen />
+      return <div>Error screen: {currentScreen}</div>
   }
 })

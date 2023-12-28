@@ -1,46 +1,48 @@
 import { observer } from 'mobx-react-lite'
-import { globalState } from '../../data/globalState'
 import { Reps } from '../Reps/Reps'
 import './TrainingScreen.scss'
 import classNames from 'classnames'
 import { useCallback } from 'react'
 import { Button } from '../Button/Button'
+import { appState } from '../../data/appState'
+import { plan } from '../../data/plan'
 
 export const TrainingScreen = observer(() => {
-  const { currentWeekIndex, selectedWeekIndex } = globalState.currentWeek
-  const plan = globalState.plan
+  const { currentWeekIndex, selectedWeekIndex } = appState
   const weekPlan = plan.getWeekPlan(selectedWeekIndex)
-  const { trainingStore, currentScreen } = globalState
+  const isAnotherWeek = selectedWeekIndex !== currentWeekIndex
+  const finished = appState.isFinished
 
   const handleDoneRep = useCallback(() => {
-    trainingStore.setRepDone()
+    appState.setCurrentRepDone()
   }, [])
 
   const handleComplete = useCallback(() => {
-    trainingStore.setCurrentRep(0)
-    currentScreen.goto('home')
+    appState.resetCurrentTraining()
+    appState.goto('home')
   }, [])
-
-  const isAnotherWeek = selectedWeekIndex !== currentWeekIndex
 
   return (
     <div className="training-screen">
       <h1>Тренировка</h1>
       <div className={isAnotherWeek ? 'training-screen__mute-section' : ''}>
-        <Reps reps={weekPlan} currentRepIndex={trainingStore.currentRep} />
+        <Reps
+          reps={weekPlan}
+          currentRepIndex={isAnotherWeek ? 0 : appState.currentRep}
+        />
       </div>
       <div
         className={classNames('training-screen__current-rep', {
-          'training-screen__current-rep--finished': trainingStore.isFinished,
+          'training-screen__current-rep--finished': finished,
           'training-screen__mute-section': isAnotherWeek,
         })}
       >
-        {trainingStore.isFinished ? '✓' : weekPlan[trainingStore.currentRep]}
+        {finished ? '✓' : weekPlan[isAnotherWeek ? 0 : appState.currentRep]}
       </div>
       <div>
         {isAnotherWeek ? (
           <AnotherWeek />
-        ) : trainingStore.isFinished ? (
+        ) : finished ? (
           <Button color={'secondary'} onClick={handleComplete}>
             Завершить
           </Button>
@@ -53,8 +55,8 @@ export const TrainingScreen = observer(() => {
 })
 
 export const AnotherWeek = observer(() => {
-  const { currentWeekIndex, selectedWeekIndex } = globalState.currentWeek
-  const { planList } = globalState.plan
+  const { currentWeekIndex, selectedWeekIndex } = appState
+  const { planList } = plan
 
   return (
     <div className="training-screen__another-week">
@@ -75,7 +77,8 @@ export const AnotherWeek = observer(() => {
         <Button
           color={'secondary'}
           onClick={() => {
-            globalState.currentWeek.setCurrentWeekIndex(selectedWeekIndex)
+            appState.resetCurrentTraining()
+            appState.setCurrentWeekIndex(selectedWeekIndex)
           }}
         >
           Перейти к {selectedWeekIndex + 1} неделе

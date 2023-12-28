@@ -1,12 +1,10 @@
-import { globalState } from '../../data/globalState'
 import { Button } from '../Button/Button'
+import { appState } from '../../data/appState'
 
 export const Header = () => {
   return (
     <div>
-      <Button onClick={() => globalState.currentScreen.goto('home')}>
-        Главная
-      </Button>
+      <Button onClick={() => appState.goto('home')}>Главная</Button>
     </div>
   )
 }
