@@ -20,10 +20,12 @@
 
   &:hover {
     background-color: darken($primary, 7%);
+    color: $onPrimary;
   }
 
   &:active {
     background-color: darken($primary, 8%);
+    color: $onPrimary;
     scale: 0.97;
   }
 
@@ -35,10 +37,12 @@
 
     &:hover {
       background-color: darken($secondary, 7%);
+      color: $onSecondary;
     }
 
     &:active {
       background-color: darken($secondary, 8%);
+      color: $onSecondary;
     }
   }
 

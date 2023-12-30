@@ -1,13 +1,22 @@
-import './App.scss'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
-import { Content } from '../Content/Content'
 import { Header } from '../Header/Header'
+import { PlanScreen } from '../PlanScreen/PlanScreen'
+import { TrainingScreen } from '../TrainingScreen/TrainingScreen'
+import { HomeScreen } from '../HomeScreen/HomeScreen'
+import './App.scss'
 
 export const App = observer(() => {
   return (
-    <div className="app">
-      <Header />
-      <Content />
-    </div>
+    <Router>
+      <div className="app">
+        <Header />
+        <Routes>
+          <Route path="/" Component={HomeScreen} />
+          <Route path="/plan" Component={PlanScreen} />
+          <Route path="/training" Component={TrainingScreen} />
+        </Routes>
+      </div>
+    </Router>
   )
 })

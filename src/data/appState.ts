@@ -11,9 +11,7 @@ export type ScreenType = 'home' | 'plan' | 'training'
 const REPS_COUNT = 5
 
 export class AppState {
-  currentScreen: ScreenType = 'home'
   currentWeekIndex: number = 0
-  selectedWeekIndex: number = 0
   currentRep: number = 0
   timerStartTime?: number
 
@@ -27,9 +25,7 @@ export class AppState {
       const savedState = localStorage.getItem('appState')
       if (savedState) {
         const parsedState = JSON.parse(savedState)
-        this.currentScreen = parsedState.currentScreen || 'home'
         this.currentWeekIndex = parsedState.currentWeekIndex || 0
-        this.selectedWeekIndex = parsedState.selectedWeekIndex || 0
         this.currentRep = parsedState.currentRep || 0
         this.timerStartTime = parsedState.timerStartTime
       }
@@ -41,9 +37,7 @@ export class AppState {
   private saveToLocalStorage() {
     try {
       const state = JSON.stringify({
-        currentScreen: this.currentScreen,
         currentWeekIndex: this.currentWeekIndex,
-        selectedWeekIndex: this.selectedWeekIndex,
         currentRep: this.currentRep,
         timerStartTime: this.timerStartTime,
       })
@@ -53,18 +47,12 @@ export class AppState {
     }
   }
 
-  goto(screen: ScreenType) {
-    this.currentScreen = screen
-    this.saveToLocalStorage()
-  }
-
-  setCurrentWeekIndex(weekIndex: number) {
+  switchToWeek(weekIndex: number) {
+    if (this.currentWeekIndex === weekIndex) {
+      return
+    }
     this.currentWeekIndex = weekIndex
-    this.saveToLocalStorage()
-  }
-
-  setSelectedWeekIndex(weekIndex: number) {
-    this.selectedWeekIndex = weekIndex
+    this.resetCurrentTraining()
     this.saveToLocalStorage()
   }
 

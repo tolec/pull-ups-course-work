@@ -1,21 +1,16 @@
-import { appState } from '../../data/appState'
 import { Logo } from '../Logo/Logo'
 import './Header.scss'
 import { Link } from '../Link/Link'
+import { NavLink } from 'react-router-dom'
 
 export const Header = () => {
-  const handleClickLogo = () => appState.goto('home')
-
   return (
     <div className="header">
-      <Link onClick={handleClickLogo}>
+      <NavLink to={'/'}>
         <Logo />
-      </Link>
-      <Link
-        cls={'header__logo-text'}
-        color={'secondary'}
-        onClick={handleClickLogo}
-      >
+      </NavLink>
+
+      <Link to="/" className="header__logo-text" color={'secondary'}>
         Подтягивания
       </Link>
     </div>

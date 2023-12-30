@@ -1,33 +1,25 @@
-import { FC, MouseEvent, PropsWithChildren, useCallback } from 'react'
+import { FC, PropsWithChildren } from 'react'
 import classNames from 'classnames'
 import './Link.scss'
+import { NavLink } from 'react-router-dom'
 
 export const Link: FC<
   PropsWithChildren<{
-    cls?: string
-    href?: string
-    onClick?: () => void
+    className?: string
+    to: string
     color?: 'default' | 'done' | 'current' | 'secondary'
   }>
-> = ({ cls, href = '#', color, onClick, children }) => {
-  const handleClick = useCallback((event: MouseEvent) => {
-    if (onClick) {
-      event.preventDefault()
-      onClick()
-    }
-  }, [])
-
+> = ({ className, to, color, children }) => {
   return (
-    <a
-      className={classNames(cls, 'link', {
+    <NavLink
+      className={classNames(className, 'link', {
         'link--done': color === 'done',
         'link--current': color === 'current',
         'link--secondary': color === 'secondary',
       })}
-      href={href}
-      onClick={handleClick}
+      to={to}
     >
       {children}
-    </a>
+    </NavLink>
   )
 }
