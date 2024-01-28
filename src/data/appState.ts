@@ -1,13 +1,5 @@
 import { makeAutoObservable } from 'mobx'
 
-/**
- * Для курсовой.
- * Есть несколько способов хранения локальных данных - localStorage, indexDB, cookie.
- * Есть несколько способов хранения состояния приложения. Mobx - один из них.
- */
-
-export type ScreenType = 'home' | 'plan' | 'training'
-
 const REPS_COUNT = 5
 
 export class AppState {
