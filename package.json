@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://tolec.github.io/pull-ups-course-work",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -11,6 +12,7 @@
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "classnames": "^2.3.2",
+    "gh-pages": "^6.1.1",
     "mobx": "^6.12.0",
     "mobx-react-lite": "^4.0.5",
     "prettier": "^3.1.1",
@@ -25,6 +27,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

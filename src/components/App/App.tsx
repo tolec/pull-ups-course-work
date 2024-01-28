@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 import { Header } from '../Header/Header'
 import { PlanScreen } from '../PlanScreen/PlanScreen'
